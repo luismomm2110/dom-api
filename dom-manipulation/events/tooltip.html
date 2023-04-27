@@ -46,7 +46,21 @@
           tooltip.id  = tooltipIdentificor
           tooltip.classList.add('tooltip')
           tooltip.innerText = textTooltip
-          event.target.appendChild(tooltip)
+          document.body.append(tooltip)
+
+          const coords = event.target.getBoundingClientRect();
+
+          let left = coords.left + (event.target.offsetWidth - tooltip.offsetWidth) /2
+          if (left < 0) left = 0;
+
+
+          let top = coords.top - tooltip.offsetHeight - 5;
+          if (top < 0) { // if crossing the top window edge, show below instead
+            top = coords.top + event.target.offsetHeight + 5;
+          }
+
+          tooltip.style.left = left + 'px'
+          tooltip.style.top = top + 'px'
       })
       document.addEventListener('mouseout', function (event){
         if (event.target.tagName !== 'BUTTON') return;
