@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="my.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <ul>
+    <li>Click the div to edit.</li>
+    <li>Enter or blur saves the result.</li>
+  </ul>
+
+  HTML is allowed.
+
+  <div id="view" class="view">Text</div>
+
+  <script>
+    const textArea = document.createElement('textarea');
+    textArea.className = 'edit';
+    view.tabIndex = 0;
+    view.addEventListener('focus', function() {
+      view.className = 'edit'
+      view.innerHTML = textArea.value;
+      view.remove()
+      document.body.appendChild(textArea);
+    });
+    textArea.addEventListener('blur', function() {
+      view.innerHTML = textArea.value;
+      textArea.remove();
+      view.className = 'view';
+      document.body.appendChild(view);
+    });
+  </script>
+
+</body>
+</html>
